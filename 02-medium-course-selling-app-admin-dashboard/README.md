@@ -5,6 +5,8 @@ Please start backend from week-3/solutions/03-course-app-medium.js (add app.list
 
 1. Start the backend from week-3/solutions/02-course-app-medium.js
 2. We will use authentication, which means you need to get back the jwt and store it in localStorage (read https://www.robinwieruch.de/local-storage-react/)
+    - local storage (add user related data: API token, ...)
+    - session storage (cache API response)
 3. You need to understand routing for this to work, so we've added a basic boilerplate that lets you navigate between 3 routes (check App.jsx)
 4. To test the current app, run `npm run dev` and see the output on localhost:3000
 
