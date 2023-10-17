@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import Course from "./Course";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Courses({ courses, hasBuy = true }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
+
+  // disable buy button if already purchased
+  const purchasedCourses = useRef(
+    JSON.parse(sessionStorage.getItem("purchased-courses"))
+  );
 
   useEffect(() => {
     if (message) {
@@ -33,11 +38,19 @@ function Courses({ courses, hasBuy = true }) {
   return (
     <>
       <div>{message ? <>{message}</> : <></>}</div>
-      {courses.map((c) => {
+      {Object.entries(courses).map((c) => {
+        console.log(c);
+        console.log(purchasedCourses);
         return (
           <Course
-            title={c.title}
-            buyCourse={hasBuy ? () => buyCourse(c.id) : null}
+            title={c[1].title}
+            buyCourse={
+              hasBuy
+                ? purchasedCourses.current[c[0]]
+                  ? null
+                  : () => buyCourse(c[0])
+                : null
+            }
           ></Course>
         );
       })}

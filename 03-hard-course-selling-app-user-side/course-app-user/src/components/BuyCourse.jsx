@@ -4,8 +4,6 @@ import Courses from "./Courses";
 function BuyCourse() {
   const [courses, setCourses] = useState([]);
 
-  // TODO: disable buy button if already purchased
-
   useEffect(() => {
     fetch("http://localhost:3000/users/courses", {
       headers: {
